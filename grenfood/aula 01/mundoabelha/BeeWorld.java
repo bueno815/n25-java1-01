@@ -1,19 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Definição da classe BeeWorld.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Gizelle Bueno
+ * @version 2025-06-04
  */
-public class MyWorld extends World
+public class BeeWorld extends World
 {
 
     /**
-     * Constructor for objects of class MyWorld.
+     * Constructor for objects of class BeeWorld.
      * 
      */
-    public MyWorld()
+    public BeeWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1); 
@@ -28,6 +28,7 @@ public class MyWorld extends World
     {
         Aranha aranha = new Aranha();
         addObject(aranha,62,55);
+        
         Mosca mosca = new Mosca();
         addObject(mosca,43,330);
         abelha abelha = new abelha();
