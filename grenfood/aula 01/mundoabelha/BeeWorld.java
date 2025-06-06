@@ -31,7 +31,7 @@ public class BeeWorld extends World
         
         Mosca mosca = new Mosca();
         addObject(mosca,43,330);
-        abelha abelha = new abelha();
+        Abelha abelha = new Abelha();
         addObject(abelha,33,181);
         aranha.setLocation(31,33);
         Mosca mosca2 = new Mosca();

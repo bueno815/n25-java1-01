@@ -6,11 +6,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Gizelle Bueno 
  * @version 2025-06-04
  */
-public class abelha extends Actor
+public class Abelha extends Actor
 {
 
     /**
-     * Act - do whatever the abelha wants to do. This method is called whenever
+     * Método que verifica se a abelha 
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
@@ -25,6 +25,57 @@ public class abelha extends Actor
             turn(5);
 
         }
+        verificarPosicao();
+    }
+/**
+ * Método que verifica posição da Abelha.
+ */
+    public void verificarPosicao(){
+        if (estaNoTopo()){
+            setLocation(getX(), getWorld().getHeight()-10);
+        }
+        if (estaNaBase()){
+            setLocation(getX(), 10);
+        }
+        if (estaNaDireita()){
+            setLocation(10, getY());
+        }
+        if (estaNaEsquerda()){
+            setLocation(getWorld().getWidth()-10, getY());   
+        }
+    }
 
+    /**
+     * Método que verifica se a abelha está no topo.
+     */
+    public boolean estaNoTopo(){
+        if (getY()<10){
+            return true;     
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Método que verifica se a abelha está na base.
+     */
+    public boolean estaNaBase(){
+        return getY()>getWorld().getHeight()-10;
+    }
+
+    /**
+     * Método que verifica se a abelha está na esquerda.
+     */
+    public boolean estaNaEsquerda(){
+        return getX()<10;
+    }
+
+    /**
+     * Método que verifica se a abelha está na direita.
+     */  
+    public boolean estaNaDireita(){
+        return getX()>getWorld().getWidth()-10;
     }
 }
+
+
