@@ -9,18 +9,28 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Abelha extends Actor
 {
     //Definindo os fields
-    int vidas;
-    int score;
-    int PONTOS = 100;
+    private int vidas;
+    private int score;
+    private int PONTOS = 100;
+    private int indice;
+    private GreenfootImage imgs[];
     //Definindo o constructor
     /**
      * Constructor da Classe Abelha
      */
-    
+
     public Abelha(){
         vidas = 3; //vai ter 3 vidas
         score = 0;
-        
+        //GreenfootImage img = new GreenfootImage("bee01.png");
+            //setImage(img);
+            indice= 0;
+        imgs = new GreenfootImage[4];//Definido vetor 4 posições
+        for (int i=0; i<4 ; i++){
+            imgs[i] = new GreenfootImage("bee0" + (i+1) + ".png");
+
+        }
+        setImage(imgs[indice]);
     }
 
     /**
@@ -42,6 +52,7 @@ public class Abelha extends Actor
         verificarPosicao();
         capturarMosca();
         serCapturadoPelaAranha();
+        animarAbelha();
     }
 
     /**
@@ -93,52 +104,58 @@ public class Abelha extends Actor
     public boolean estaNaDireita(){
         return getX()>getWorld().getWidth()-10;
     }
-    
+
     public void capturarMosca(){
-     if (isTouching(Mosca.class)){
-         removeTouching(Mosca.class);
-         Greenfoot.playSound("slurp.wav");
-         int posX = Greenfoot.getRandomNumber(getWorld().getWidth()) + 1;
-         int posY = Greenfoot.getRandomNumber(getWorld().getHeight()) + 1;
-         //Criando a mosca
-         Mosca mosca = new Mosca();
-         //Colocando no mundo na posição X , Y
-         getWorld().addObject(mosca, posX, posY);
-         
-     }
+        if (isTouching(Mosca.class)){
+            removeTouching(Mosca.class);
+            Greenfoot.playSound("slurp.wav");
+            int posX = Greenfoot.getRandomNumber(getWorld().getWidth()) + 1;
+            int posY = Greenfoot.getRandomNumber(getWorld().getHeight()) + 1;
+            //Criando a mosca
+            Mosca mosca = new Mosca(
+                    Greenfoot.getRandomNumber(3) + 1,
+                    Greenfoot.getRandomNumber(360));
+
+            //Colocando no mundo na posição X , Y
+            getWorld().addObject(mosca, posX, posY);
+
+        }
     }
-    
+
     public void capturarMosca2(){
         Actor mosca = getOneIntersectingObject(Mosca.class);
         if (mosca != null){
             getWorld().removeObject(mosca);
-            
+
         }
-        
-        
-    }
-    
-    public void serCapturadoPelaAranha(){
-        if (isTouching(Aranha.class)){
-             int posX = Greenfoot.getRandomNumber(getWorld().getWidth()) + 1;
-         int posY = Greenfoot.getRandomNumber(getWorld().getHeight()) + 1;
-         setLocation(posX, posY);
-         Greenfoot.playSound("ouch.wav");
-         atualizarScore();
-         vidas--;//vidas = vidas -1
-         if (vidas<=0){
-             getWorld().showText("GAME OVER" , 400, 300);
-             Greenfoot.stop();
-         }
-             
-         }
-            
-        }
-        
-        public void atualizarScore (){
-            score += PONTOS; //score = score + PONTOS
-            getWorld().showText("Score:" + score, 200, 50);
-        }
+
     }
 
+    public void serCapturadoPelaAranha(){
+        if (isTouching(Aranha.class)){
+            int posX = Greenfoot.getRandomNumber(getWorld().getWidth()) + 1;
+            int posY = Greenfoot.getRandomNumber(getWorld().getHeight()) + 1;
+            setLocation(posX, posY);
+            Greenfoot.playSound("ouch.wav");
+            atualizarScore();
+            vidas--;//vidas = vidas -1
+            if (vidas<=0){
+                getWorld().showText("GAME OVER" , 400, 300);
+                Greenfoot.stop();
+            }
+
+        }
+
+    }
+
+    public void atualizarScore (){
+        score += PONTOS; //score = score + PONTOS
+        getWorld().showText("Score:" + score, 100, 10);
+    }
+    public void animarAbelha(){
+        indice = (indice + 1) % 4;
+        setImage(imgs[indice]);
+        
+    }
+}
 
