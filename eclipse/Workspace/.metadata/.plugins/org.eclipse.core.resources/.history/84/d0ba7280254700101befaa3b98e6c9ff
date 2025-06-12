@@ -1,0 +1,5 @@
+package br.co.senaisp.bauru.classes;
+
+public class Estudante {
+
+}
