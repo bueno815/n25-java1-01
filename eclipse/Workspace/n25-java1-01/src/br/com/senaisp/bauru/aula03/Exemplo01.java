@@ -24,6 +24,7 @@ public class Exemplo01 {
 		vl = 10;
 		vl2 = ++vl + 5;
 		System.out.println(vl + " " + vl2);
+		
 	}
 
 	{		
