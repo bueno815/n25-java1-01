@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Exercicio01 {
@@ -18,8 +19,16 @@ public class Exercicio01 {
 		sca.close(); //fechando o scanner de apoio
 		while(sc.hasNextLine()) {
 			linha = sc.nextLine();
-			sca = new Scanner(linha);
-			sca.useDelimiter(";");
+			sca = new Scanner(linha).useLocale(Locale.US);
+			sca.useDelimiter(";");//Delimitador
+			//Imprimindo o nome
+			System.out.print(sca.next()+"\t");//nome
+			//Imprimindo a idade
+			System.out.print(sca.nextInt() + "\t");//idade
+			//Imprimindo o salário
+			System.out.println(sca.nextDouble());//salario
+			//fechando o scanner de apoio
+			sca.close();
 			
 			
 		}
