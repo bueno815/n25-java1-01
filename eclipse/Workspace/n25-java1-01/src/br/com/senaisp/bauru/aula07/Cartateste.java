@@ -10,6 +10,7 @@ public class Cartateste {
 		System.out.println(ct.getNaipe());
 		System.out.println(ct.getNumero());
 		System.out.println(ct.getValor());
+		System.out.println(ct);
 		
 
 	}
